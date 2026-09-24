@@ -20,7 +20,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@core/components": ["./src/core/components/index"],
+      "@features/users": ["./src/features/users/index"]
+    }
   },
   "include": ["src"]
 }
