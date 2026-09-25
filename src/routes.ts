@@ -3,7 +3,7 @@ import App from "./App";
 import UserList from "./users/UserList/UserList";
 import User from "./users/User/User";
 import UserFavorites from "./users/UserFavorites/UserFavorites";
-import { userResolver } from "./user-resolver";
+import { shouldUserDetailsRevalidate, userResolver } from "./user-resolver";
 import UserError from "./users/User/UserError";
 
 export const routes = createBrowserRouter([
@@ -19,6 +19,7 @@ export const routes = createBrowserRouter([
         path: ':username',
         Component: User,
         loader: userResolver,
+        shouldRevalidate: shouldUserDetailsRevalidate,
         ErrorBoundary: UserError,
       },
       {

@@ -1,3 +1,4 @@
+import type { ShouldRevalidateFunction } from "react-router";
 import { getUser } from "./users/api/getUser";
 
 export async function userResolver({params}: {params: any}) {
@@ -8,4 +9,12 @@ export async function userResolver({params}: {params: any}) {
   }
 
   return await getUser(username);;
+}
+
+export const shouldUserDetailsRevalidate: ShouldRevalidateFunction = ({ currentUrl, nextUrl }): boolean => {
+  if (currentUrl.pathname !== nextUrl.pathname) {
+    return true;
+  }
+
+  return false;
 }

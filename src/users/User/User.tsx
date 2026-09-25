@@ -5,6 +5,7 @@ import UserRepoList from "./UserRepoList";
 import type { UserDetails } from "../models/user-detail.interface";
 import { BACK } from "../../core/constants/navigation";
 import './User.css';
+import { useUserRepoFilters } from "../hooks/useUserRepoFilters";
 
 export default function User() {
   const user = useLoaderData<UserDetails>();
@@ -12,6 +13,8 @@ export default function User() {
   const navigate = useNavigate();
 
   const isLoading = navigation.state === 'loading';
+
+  const {filters, setDirection, setSort} = useUserRepoFilters();
 
   return (
     <div className="user-details">
@@ -27,7 +30,13 @@ export default function User() {
       <UserCard user={user} />
 
       <div>Repositories</div>
-      <UserRepoFilter />
+      <UserRepoFilter 
+        sort={filters.sort} 
+        direction={filters.direction} 
+        onSortChange={setSort} 
+        onDirectionChange={setDirection}
+      />
+      
       <UserRepoList />
     </div>
   );
