@@ -12,12 +12,10 @@ export const routes = createBrowserRouter([
       {
         path: '',
         Component: UserList,
-        children: [
-          {
-            path: ':userId',
-            Component: User,
-          }
-        ],
+      },
+      {
+        path: ':userLogin',
+        Component: User,
       },
       {
         path: 'favorites',

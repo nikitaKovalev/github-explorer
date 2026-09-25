@@ -1,5 +1,5 @@
 export function User() {
-  return (<></>);
+  return (<>User Details</>);
 }
 
 export default User;
