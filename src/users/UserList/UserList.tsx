@@ -23,6 +23,10 @@ export default function UserList() {
   
   const isPristine = !filters.search && !data && !isLoading && isError;
 
+  if (!isPristine && isError) {
+    return <UserListError onRefetch={refetch}/>
+  }
+
   return (
     <>
       <h1>Find developers and explore their work</h1>

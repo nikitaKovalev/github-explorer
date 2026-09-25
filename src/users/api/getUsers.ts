@@ -1,8 +1,8 @@
 import type { UserReponse, UsersQueryParams } from "../models/user.interface";
 import axiosInstance from "./AxiosInstance";
 
-export async function getUsers(params: UsersQueryParams, signal?: AbortSignal): Promise<UserReponse> {
-  const response = await axiosInstance.get('/search/users', {params: removeEmptyQueryParams(params), signal});
+export async function getUsers(params: UsersQueryParams): Promise<UserReponse> {
+  const response = await axiosInstance.get('/search/users', {params: removeEmptyQueryParams(params)});
   return response.data;
 }
 
