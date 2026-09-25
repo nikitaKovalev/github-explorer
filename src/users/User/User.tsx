@@ -6,15 +6,21 @@ import type { UserDetails } from "../models/user-detail.interface";
 import { BACK } from "../../core/constants/navigation";
 import './User.css';
 import { useUserRepoFilters } from "../hooks/useUserRepoFilters";
+import useUserRepos from "../hooks/useUserRepos";
 
 export default function User() {
   const user = useLoaderData<UserDetails>();
   const navigation = useNavigation();
   const navigate = useNavigate();
 
-  const isLoading = navigation.state === 'loading';
+  const isUserLoading = navigation.state === 'loading';
 
   const {filters, setDirection, setSort} = useUserRepoFilters();
+  const {data, isError, isLoading} = useUserRepos({
+    sort: filters.sort, 
+    direction: filters.direction, 
+    username: user.login,
+  });
 
   return (
     <div className="user-details">
@@ -25,7 +31,7 @@ export default function User() {
         Back to search
       </button>
 
-      {isLoading && <p>Loading details...</p>}
+      {isUserLoading && <p>Loading details...</p>}
 
       <UserCard user={user} />
 
@@ -37,7 +43,11 @@ export default function User() {
         onDirectionChange={setDirection}
       />
       
-      <UserRepoList />
+      <UserRepoList 
+        data={data} 
+        isError={isError} 
+        isLoading={isLoading} 
+      />
     </div>
   );
 }

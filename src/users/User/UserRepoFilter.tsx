@@ -1,6 +1,4 @@
-import { userRepoSort, userRepoSortDirection } from "../hooks/useUserRepoFilters";
-import type { UserRepoSort, UserRepoSortDirection } from "../hooks/useUserRepoFilters";
-
+import { type UserRepoSort, type UserRepoSortDirection, userRepoSortDirection, userRepoSort } from "../models/user-repo.interface";
 
 interface UserRepoFilterProps {
   sort: UserRepoSort | string, 

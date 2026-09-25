@@ -1,16 +1,11 @@
 import { useSearchParams } from "react-router";
-
-export const userRepoSort = ['updated', 'created', 'pushed', 'full_name'] as const;
-export const userRepoSortDirection = ['asc', 'desc'] as const;
-
-export type UserRepoSort = typeof userRepoSort[number];
-export type UserRepoSortDirection = typeof userRepoSortDirection[number];
+import { userRepoSort, userRepoSortDirection, type UserRepoSort, type UserRepoSortDirection } from "../models/user-repo.interface";
 
 export function useUserRepoFilters() {
   const [searchParams, setSerachParams] = useSearchParams();
 
   const sort = searchParams.get('sort') ?? userRepoSort[0];
-  const direction = searchParams.get('direction') ?? userRepoSortDirection[0];
+  const direction = searchParams.get('direction') ?? userRepoSortDirection[1];
 
   const setSort = (newSort: UserRepoSort | string) => {
     const newParams = new URLSearchParams(searchParams);

@@ -14,3 +14,15 @@ export interface UserRepo {
   updated_at: string;
   pushed_at: string;
 }
+
+export const userRepoSort = ['updated', 'created', 'pushed', 'full_name'] as const;
+export const userRepoSortDirection = ['asc', 'desc'] as const;
+
+export type UserRepoSort = typeof userRepoSort[number];
+export type UserRepoSortDirection = typeof userRepoSortDirection[number];
+
+export interface UserRepoQueryParams {
+  username: string;
+  sort: UserRepoSort | string;
+  direction: UserRepoSortDirection | string;
+}
