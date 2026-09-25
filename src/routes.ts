@@ -3,6 +3,8 @@ import App from "./App";
 import UserList from "./users/UserList/UserList";
 import User from "./users/User/User";
 import UserFavorites from "./users/UserFavorites/UserFavorites";
+import { userResolver } from "./user-resolver";
+import UserError from "./users/User/UserError";
 
 export const routes = createBrowserRouter([
   {
@@ -14,12 +16,14 @@ export const routes = createBrowserRouter([
         Component: UserList,
       },
       {
-        path: ':userLogin',
+        path: ':username',
         Component: User,
+        loader: userResolver,
       },
       {
         path: 'favorites',
         Component: UserFavorites,
+        ErrorBoundary: UserError,
       }
     ],
   }
