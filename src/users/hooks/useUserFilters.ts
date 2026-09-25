@@ -5,7 +5,7 @@ export function useUsersFilters() {
 
   const q = searchParams.get('q') || '';
   const page = Number(searchParams.get('page')) || 1;
-  const per_page = Number(searchParams.get('per_page')) || 10;
+  const per_page = Number(searchParams.get('per_page')) || 20;
 
   const setSearch = (text: string) => {
     const newParams = new URLSearchParams(searchParams);

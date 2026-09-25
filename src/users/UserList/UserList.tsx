@@ -1,13 +1,19 @@
-import { useState } from "react";
 import UserListSearch from "./UserListSearch";
 import useUsers from "../hooks/useUsers";
 import UserListLoading from "./UserListLoader";
 import UserListError from "./UserListError";
 import UserListResult from "./UserListResult";
 import { useUsersFilters } from "../hooks/useUserFilters";
+import { useEffect, useState } from "react";
+import useDebounce from "../../core/hooks/useDebounce";
 
 export default function UserList() {
   const {filters, setPage, setSearch, setPerPage} = useUsersFilters();
+  const [localSearch, setLocalSearch] = useState(filters.search);
+  const debounceValue = useDebounce(localSearch);
+
+  useEffect(() => setLocalSearch(filters.search), [filters.search]);
+  useEffect(() => setSearch(debounceValue), [debounceValue]);
 
   const {data, isError, isLoading, refetch} = useUsers({
     page: filters.page, 
@@ -22,8 +28,8 @@ export default function UserList() {
       <h1>Find developers and explore their work</h1>
       
       <UserListSearch 
-        searchText={filters.search} 
-        onTextChange={setSearch}
+        searchText={localSearch} 
+        onTextChange={setLocalSearch}
       />
 
       {isPristine && <p className="user-list-pristine">Search GitHub developers</p>}
