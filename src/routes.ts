@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router";
-import { UserList, UserFavorites, User } from "./features/users/pages";
 import App from "./App";
+import UserList from "./users/UserList/UserList";
+import User from "./users/User/User";
+import UserFavorites from "./users/UserFavorites/UserFavorites";
 
 export const routes = createBrowserRouter([
   {
@@ -19,7 +21,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: 'favorites',
-        Component: UserFavorites
+        Component: UserFavorites,
       }
     ],
   }

@@ -23,7 +23,7 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@core/components": ["./src/core/components/index"],
-      "@features/users": ["./src/features/users/index"]
+      "@users": ["./src/users/index"]
     }
   },
   "include": ["src"]
