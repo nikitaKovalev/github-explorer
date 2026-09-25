@@ -15,7 +15,10 @@ export default function User() {
 
   return (
     <div className="user-details">
-      <button className="user-details__button--back" onClick={() => navigate(BACK)}>
+      <button 
+        className="user-details__button--back" 
+        onClick={() => navigate(BACK)}
+      >
         Back to search
       </button>
 

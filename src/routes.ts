@@ -19,11 +19,11 @@ export const routes = createBrowserRouter([
         path: ':username',
         Component: User,
         loader: userResolver,
+        ErrorBoundary: UserError,
       },
       {
         path: 'favorites',
         Component: UserFavorites,
-        ErrorBoundary: UserError,
       }
     ],
   }

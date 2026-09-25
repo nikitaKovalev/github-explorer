@@ -13,7 +13,7 @@ export default function UserCard({user}: {user: UserDetails}) {
         </div>
 
         <div className="user-details-card__text">
-          {user.login}  
+          @{user.login}
         </div>
 
         <div className="user-details-card__text">
@@ -26,6 +26,10 @@ export default function UserCard({user}: {user: UserDetails}) {
         
         <div className="user-details-card__text">
           Repositories: {user.public_repos}
+        </div>
+        
+        <div className="user-details-card__text">
+          <a href={user.url}>Open GitHub profile</a>
         </div>
       </div>
     </div>
