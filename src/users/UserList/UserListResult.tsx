@@ -21,7 +21,7 @@ export default function UserListResult(
   };
   const onNext = () => onPageChange(page + 1);
   const userList = (users: User[]) => users.map(user => 
-    <li className="user-list-items__item">{ user.id}: { user.login }</li>
+    <li className="user-list-items__item" key={user.id}>{ user.id}: { user.login }</li>
   );
 
   return (

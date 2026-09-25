@@ -4,22 +4,25 @@ import useUsers from "../hooks/useUsers";
 import UserListLoading from "./UserListLoader";
 import UserListError from "./UserListError";
 import UserListResult from "./UserListResult";
+import { useUsersFilters } from "../hooks/useUserFilters";
 
 export default function UserList() {
-  const [search, setSearch] = useState('');
-  const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(20);
+  const {filters, setPage, setSearch, setPerPage} = useUsersFilters();
 
-  const {data, isError, isLoading, refetch} = useUsers({page, per_page: perPage, q: search});
+  const {data, isError, isLoading, refetch} = useUsers({
+    page: filters.page, 
+    per_page: filters.perPage, 
+    q: filters.search
+  });
   
-  const isPristine = !search && !data && !isLoading && isError;
+  const isPristine = !filters.search && !data && !isLoading && isError;
 
   return (
     <>
       <h1>Find developers and explore their work</h1>
       
       <UserListSearch 
-        searchText={search} 
+        searchText={filters.search} 
         onTextChange={setSearch}
       />
 
@@ -31,8 +34,8 @@ export default function UserList() {
         data && 
         <UserListResult 
           data={data} 
-          page={page} 
-          perPage={perPage}
+          page={filters.page} 
+          perPage={filters.perPage}
           onPageChange={setPage}
           onPageSizeChange={setPerPage}
         />
